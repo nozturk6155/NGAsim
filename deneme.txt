@@ -1,0 +1,1 @@
+ana repoda dosya oluşturuldu git pull ile alınacak
