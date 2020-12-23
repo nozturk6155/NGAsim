@@ -8,12 +8,11 @@ TextureHolder::~TextureHolder(){}
 
 TextureHolder *TextureHolder::s_Instance = 0;
 
-//Texture'a gecirilecek fotolarin konumunu ve sim'de olusturulan genel renderer'i parametre olarak alir.
-//sim'de olusturulan  m_pTexture'a atanacak image dolu texturelari döndurur.
-SDL_Texture *TextureHolder::load_to_Texture(string path, SDL_Renderer *renderer)
+/*Texture'a gecirilecek fotolarin konumunu, sim'de olusturulan genel renderer'i ve
+textureMap pozisyonunu int olarak parametre alir.*/
+//sim'de olusturulan  m_pTexture'a atanacak image dolu texturelari tutar.
+void TextureHolder::load_to_Texture(string path, SDL_Renderer *renderer, int count)
 {
-    //The final texture
-    SDL_Texture *newTexture = nullptr;
     //Load image at specified path
     SDL_Surface *loadedSurface = IMG_Load(path.c_str());
     if(loadedSurface == nullptr)
@@ -23,8 +22,8 @@ SDL_Texture *TextureHolder::load_to_Texture(string path, SDL_Renderer *renderer)
     else
     {
         //Create texture from surface pixels
-        newTexture = SDL_CreateTextureFromSurface( renderer, loadedSurface );
-        if(newTexture == nullptr)
+        m_textureMap[count] = SDL_CreateTextureFromSurface(renderer, loadedSurface);
+        if(m_textureMap[count] == nullptr)
         {
             printf( "Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError() );
         }
@@ -33,6 +32,4 @@ SDL_Texture *TextureHolder::load_to_Texture(string path, SDL_Renderer *renderer)
         SDL_FreeSurface(loadedSurface);
     }
 
-
-    return newTexture;
 }

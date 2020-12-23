@@ -4,6 +4,7 @@
 #include <string>
 #include <SDL.h>
 #include <SDL_image.h>
+#include <map>
 
 using namespace std;
 
@@ -22,8 +23,9 @@ public:
         }
         ~TextureHolder();
 
-    SDL_Texture *load_to_Texture(string path, SDL_Renderer *renderer);
+    void load_to_Texture(string path, SDL_Renderer *renderer, int count);
 
+    map<string, SDL_Texture*> m_textureMap;
 
 private:
     TextureHolder();
