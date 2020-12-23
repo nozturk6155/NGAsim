@@ -11,7 +11,7 @@ TextureHolder *TextureHolder::s_Instance = 0;
 /*Texture'a gecirilecek fotolarin konumunu, sim'de olusturulan genel renderer'i ve
 textureMap pozisyonunu int olarak parametre alir.*/
 //sim'de olusturulan  m_pTexture'a atanacak image dolu texturelari tutar.
-void TextureHolder::load_to_Texture(string path, SDL_Renderer *renderer, int count)
+void TextureHolder::load_to_Texture(string path, SDL_Renderer *renderer, string typeId)
 {
     //Load image at specified path
     SDL_Surface *loadedSurface = IMG_Load(path.c_str());
@@ -22,8 +22,8 @@ void TextureHolder::load_to_Texture(string path, SDL_Renderer *renderer, int cou
     else
     {
         //Create texture from surface pixels
-        m_textureMap[count] = SDL_CreateTextureFromSurface(renderer, loadedSurface);
-        if(m_textureMap[count] == nullptr)
+        m_textureMap[typeId] = SDL_CreateTextureFromSurface(renderer, loadedSurface);
+        if(m_textureMap[typeId] == nullptr)
         {
             cerr<<"Unable to create texture!\n";
         }

@@ -23,7 +23,7 @@ public:
         }
         ~TextureHolder();
 
-    void load_to_Texture(string path, SDL_Renderer *renderer, int count);
+    void load_to_Texture(string path, SDL_Renderer *renderer, string typeId);
 
     map<string, SDL_Texture*> m_textureMap;
 
