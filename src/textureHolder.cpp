@@ -17,7 +17,7 @@ void TextureHolder::load_to_Texture(string path, SDL_Renderer *renderer, int cou
     SDL_Surface *loadedSurface = IMG_Load(path.c_str());
     if(loadedSurface == nullptr)
     {
-        printf( "Unable to load image %s! SDL_image Error: %s\n", path.c_str(), IMG_GetError() );
+        cerr<<"Unable to load image!\n";
     }
     else
     {
@@ -25,7 +25,7 @@ void TextureHolder::load_to_Texture(string path, SDL_Renderer *renderer, int cou
         m_textureMap[count] = SDL_CreateTextureFromSurface(renderer, loadedSurface);
         if(m_textureMap[count] == nullptr)
         {
-            printf( "Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError() );
+            cerr<<"Unable to create texture!\n";
         }
 
         //Get rid of old loaded surface
