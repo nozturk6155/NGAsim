@@ -12,9 +12,6 @@ InputHandler::InputHandler()
 void InputHandler::update()
 {
     SDL_Event event;
-    while(SDL_PollEvent(&event))
-    {
-
         m_keystates = SDL_GetKeyboardState(0);
         while(SDL_PollEvent(&event))
         {
@@ -31,7 +28,6 @@ void InputHandler::update()
                  break;
             }
         }
-    }
 }
 
 //Tuşa basılıp basılmadığının kontrolü yapılır
