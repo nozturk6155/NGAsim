@@ -2,7 +2,13 @@
 #include "InputHandler.h"
 #include "Sim.h"
 #include <SDL.h>
-
+/*
+Constructorda Mouse position ve Mouse Button State'leri setlenecek.
+Diger mouse ve klavye durumlari donguye eklenecek.
+header dosyasindaki onMouseMove, onMouseButtonUp, onMouseButtonDown,
+getMousePosition, getMouseButtonState yazilacak.
+void clean() fonksiyonunu bu dosyaya da ekle. ici bos kalsin.
+*/
 InputHandler* InputHandler::s_pInstance = 0;
 InputHandler::InputHandler()
 {

@@ -61,19 +61,7 @@ bool Sim::init(const char* title, int xpos, int ypos, int width,
 
 void Sim::handleEvents()
 {
-    SDL_Event event;
-    if(SDL_PollEvent(&event))
-    {
-        switch (event.type)
-        {
-            case SDL_QUIT:
-            m_bRunning = false;
-            break;
-
-            default:
-            break;
-        }
-    }
+    InputHandler::Instance()->update();
 }
 
 void Sim::update()

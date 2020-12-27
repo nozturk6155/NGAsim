@@ -1,10 +1,11 @@
-#include <iostream>
+
+#include <iostream>
 #include <SDL.h>
 #include "Sim.h"
 
 int main(int argc, char* argv[])
 {
-    if(TheSim::Instance()->init("NGAsim", 100, 100, 640, 480, 0))
+    if(TheSim::Instance()->init("NGAsim", 200, 100, 800, 600, 0))
     {
         while(TheSim::Instance()->running())
         {
@@ -22,3 +23,4 @@ int main(int argc, char* argv[])
     TheSim::Instance()->clean();
     return 0;
 }
+
