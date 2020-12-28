@@ -38,10 +38,33 @@ void TextureManager::drawFrame(std::string typeId, int x, int y,
                                int width, int height,
                                int currentFrame, SDL_Renderer* renderer)
 {
-    // Source ve Destination Rect olustur. RenderCopy ile ekrana yaz.
+    //x ve y ana ekrandaki koordinatlar
+
+    SDL_Rect srcRect;
+    SDL_Rect dstRect;
+
+
+    srcRect.x = width*currentFrame;
+    srcRect.y = 0;
+    srcRect.w = width;
+    srcRect.h = height;
+
+    dstRect.x = x;
+    dstRect.y = y;
+    dstRect.w = width;
+    dstRect.h = height;
+
+    /*source rect ile texture uzerinden istedigimiz kisim alindi sonra destination rect ile
+    ekranda istenilen yere basilmasi icin hazirlandi*/
+    SDL_RenderCopy(renderer, m_textureMap.at(typeId), &srcRect, &dstRect);
+    SDL_RenderPresent(renderer);//show
+    SDL_RenderClear(renderer);//clear
+
+
 }
 
 void TextureManager::clearFromTextureMap(std::string typeId)
 {
-    // texture'u maptan sil.
+    SDL_DestroyTexture( m_textureMap.at(typeId) );
+    // texture'u maptan sildi.
 }
