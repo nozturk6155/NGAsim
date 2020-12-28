@@ -57,8 +57,6 @@ void TextureManager::drawFrame(std::string typeId, int x, int y,
     /*source rect ile texture uzerinden istedigimiz kisim alindi sonra destination rect ile
     ekranda istenilen yere basilmasi icin hazirlandi*/
     SDL_RenderCopy(renderer, m_textureMap.at(typeId), &srcRect, &dstRect);
-    SDL_RenderPresent(renderer);//show
-    SDL_RenderClear(renderer);//clear
 
 
 }
