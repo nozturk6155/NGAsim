@@ -13,7 +13,7 @@ public:
     static TextureManager *Instance()//disaridan objeye ulasmamizi saglayacak fonks.
         {
             if(s_Instance == 0)
-            {   s_Instance = new TextureHolder();
+            {   s_Instance = new TextureManager();
                 return s_Instance;
             }
 
