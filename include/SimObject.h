@@ -10,7 +10,7 @@ class SimObject
     public:
 
         SimObject(int x, int y, int w, int h, std::string ID);
-        virtual void draw(SDL_Renderer* pRenderer);
+        virtual void draw();
         virtual void update();
         virtual void clean();
         Vector2D& getPosition() { return m_position; }
@@ -21,11 +21,8 @@ class SimObject
     protected:
 
         Vector2D m_position;
-        int m_x;
-        int m_y;
         int m_width;
         int m_height;
-
         int m_currentFrame;
         std::string m_textureID;
 };
