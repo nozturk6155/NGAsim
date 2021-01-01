@@ -39,12 +39,16 @@ typedef class Sim
 
         SDL_Renderer* getRenderer() const { return m_pRenderer; }
 
+        SimStateMachine* getStateMachine(){ return m_pSimStateMachine; }
+
     private:
         Sim(){}; // Ensure that noone can access it from outside of the class
 
         SDL_Texture* m_pTexture; // the new SDL_Texture variable
         SDL_Window* m_pWindow;
         SDL_Renderer* m_pRenderer;
+
+        SimStateMachine* m_pSimStateMachine;
 
         static Sim* s_pInstance;
         bool m_bRunning;
