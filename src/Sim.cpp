@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Sim.h"
+#include "InputHandler.h"
 
 Sim* Sim::s_pInstance = 0;
 
@@ -52,10 +53,11 @@ bool Sim::init(const char* title, int xpos, int ypos, int width,
     // everything inited successfully,start the main loop
     m_bRunning = true;
 
-    /* Textures will be loaded */
+    m_pSimStateMachine = new SimStateMachine();
 
-    /* Objects will be instantiated. */
+    m_pSimStateMachine->changeState(new MainState());
 
+    std::cout << "init done\n";
     return true;
 }
 
@@ -66,14 +68,22 @@ void Sim::handleEvents()
 
 void Sim::update()
 {
-    /* update all objects */
+    for(int i = 0; i < m_pSimStateMachine->getStateVector().size(); i++)
+    {
+
+        m_pSimStateMachine->getStateVector()[i]->update();
+    }
 }
 
 void Sim::render()
 {
     SDL_RenderClear(m_pRenderer); // clear the renderer to
 
-    /* Draw all objects */
+    for(int i = 0; i < m_pSimStateMachine->getStateVector().size(); i++)
+    {
+
+        m_pSimStateMachine->getStateVector()[i]->render();
+    }
 
     SDL_RenderPresent(m_pRenderer); // draw to the screen
 }
