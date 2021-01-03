@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Sim.h"
 #include "InputHandler.h"
+#include "SimStateMachine.h"
+#include "MainState.h"
 
 Sim* Sim::s_pInstance = 0;
 
