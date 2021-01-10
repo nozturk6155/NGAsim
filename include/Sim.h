@@ -1,6 +1,7 @@
 #ifndef SIM_H
 #define SIM_H
 #include <SDL.h>
+#include "SimStateMachine.h"
 
 typedef class Sim
 {
