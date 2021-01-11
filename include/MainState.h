@@ -12,7 +12,7 @@ class MainState : public SimState
         virtual bool onEnter();
         virtual bool onExit();
         virtual std::string getStateID() const { return s_mainID; }
-        static void getInput();
+        static void startToRun();
     private:
         static const std::string s_mainID;
         std::vector<SimObject*> m_simObject;

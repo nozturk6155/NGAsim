@@ -3,7 +3,7 @@
 #include "Vector2D.h"
 
 Object::Object(int x, int y, int w, int h, std::string id, float vx, float vy)
-:SimObject(x,y,w,h,id),m_velocity(vx,vy),m_acceleration(10,10)
+:SimObject(x,y,w,h,id),m_velocity(vx,vy),m_acceleration(0.00,0.00)
 {
 
 }
@@ -22,7 +22,7 @@ void Object::update()
     m_velocity += m_acceleration;
     m_position += m_velocity;
 
-    if(m_position.getY()==0)
+    if(m_position.getY() <= 0)
     {
         finished == true;
     }
