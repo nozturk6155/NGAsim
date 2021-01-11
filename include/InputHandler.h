@@ -41,6 +41,7 @@ typedef class InputHandler
         void onMouseMove(SDL_Event& event);
         void onMouseButtonDown(SDL_Event& event);
         void onMouseButtonUp(SDL_Event& event);
+        void onTextInput(SDL_Event& event);
 
         const Uint8* m_keystates;
 
@@ -51,3 +52,4 @@ typedef class InputHandler
 }TheInputHandler;
 
 #endif // INPUTHANDLER_H
+
