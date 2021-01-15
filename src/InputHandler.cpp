@@ -22,7 +22,7 @@ Vector2D* InputHandler::getMousePosition()
 {
         return &m_mousePosition;
 }
-//InputlarÄ±n durumunu gunceller
+//Inputların durumunu gunceller
 void InputHandler::update()
 {
     SDL_Event event;
@@ -52,7 +52,7 @@ void InputHandler::update()
         }
 }
 
-//Tusa basÄ±lÄ±p basÄ±lmadÄ±gÄ±nÄ±n kontrolu yapilir.
+//Tusa basılıp basılmadıgının kontrolu yapilir.
 bool InputHandler::isKeyDown(SDL_Scancode key)
 {
     if(m_keystates != 0)
@@ -78,7 +78,7 @@ void InputHandler::KeyEvents()
     }
 
 }
-//Mouse'un x ve y koordinatÄ± setlenir.
+//Mouse'un x ve y koordinatı setlenir.
 void InputHandler::onMouseMove(SDL_Event& event)
 {
     m_mousePosition.setX(event.motion.x);
