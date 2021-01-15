@@ -7,18 +7,18 @@
 class InputBar: public SimObject
 {
     public:
-        InputBar(int x, int y, int w, int h, std::string id);
+        InputBar(int x, int y, int w, int h, std::string id, void (*callback)());
         void draw();
         void update();
         void clean();
     private:
-        std::string currentID;
         enum button_state
         {
             MOUSE_OUT = 0,
             MOUSE_OVER = 1,
             CLICKED = 2
         };
+        void (*m_callback)();
         bool m_bReleased = true;
 };
 

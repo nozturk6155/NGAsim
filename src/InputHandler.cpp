@@ -2,7 +2,6 @@
 #include <SDL.h>
 #include "InputHandler.h"
 #include "Sim.h"
-#include "TtfManager.h"
 
 InputHandler* InputHandler::s_pInstance = 0;
 InputHandler::InputHandler() : m_mousePosition(0.0,0.0) //Default olarak mouse konumu setlenir.
@@ -23,7 +22,7 @@ Vector2D* InputHandler::getMousePosition()
 {
         return &m_mousePosition;
 }
-//InputlarÄ±n durumunu gunceller
+//Inputlarýn durumunu gunceller
 void InputHandler::update()
 {
     SDL_Event event;
@@ -47,20 +46,13 @@ void InputHandler::update()
             case SDL_KEYDOWN:
                 KeyEvents();
                 break;
-            //Special text input event
-            case SDL_TEXTINPUT:
-                onTextInput(event);
-                break;
             default:
                  break;
             }
-
-
         }
-
 }
 
-//Tusa basÄ±lÄ±p basÄ±lmadÄ±gÄ±nÄ±n kontrolu yapilir.
+//Tusa basýlýp basýlmadýgýnýn kontrolu yapilir.
 bool InputHandler::isKeyDown(SDL_Scancode key)
 {
     if(m_keystates != 0)
@@ -85,9 +77,8 @@ void InputHandler::KeyEvents()
         TheSim::Instance()->quit();
     }
 
-
 }
-//Mouse'un x ve y koordinatÄ± setlenir.
+//Mouse'un x ve y koordinatý setlenir.
 void InputHandler::onMouseMove(SDL_Event& event)
 {
     m_mousePosition.setX(event.motion.x);
@@ -127,84 +118,8 @@ void InputHandler::onMouseButtonDown(SDL_Event& event) {
             break;
 	}
 }
-void InputHandler::onTextInput(SDL_Event& event)
-{
-    //Not copy or pasting
-    if( !( SDL_GetModState() & KMOD_CTRL && ( event.text.text[ 0 ] == 'c' ||
-    event.text.text[ 0 ] == 'C' || event.text.text[ 0 ] == 'v' ||
-    event.text.text[ 0 ] == 'V' ) ) )
-    {
-        //Append character
-        TheTtfManager::Instance()->inputText[TheTtfManager::Instance()->currentID] += event.text.text;
-        TheTtfManager::Instance()->renderText = true;
-    }
-
-    //Handle backspace
-    if(isKeyDown(SDL_SCANCODE_BACKSPACE) )
-    {
-        if(TheTtfManager::Instance()->inputText[TheTtfManager::Instance()->currentID].length()>0)
-        {
-            TheTtfManager::Instance()->inputText[TheTtfManager::Instance()->currentID].pop_back();
-            TheTtfManager::Instance()->renderText = true;
-        }
-    }
-    /*Handle copy//GetModState -> Returns an OR'd combination of the modifier
-                                  keys for the keyboard.*/
-    else if(isKeyDown(SDL_SCANCODE_C))
-    {
-        if(SDL_GetModState() && isKeyDown(SDL_SCANCODE_LCTRL))
-        {
-            SDL_SetClipboardText( TheTtfManager::Instance()->inputText[TheTtfManager::Instance()->currentID].c_str() );
-        }
-    }
-    //Handle paste
-    else if(isKeyDown(SDL_SCANCODE_V))
-    {
-        if(SDL_GetModState() && isKeyDown(SDL_SCANCODE_LCTRL))
-        {
-            TheTtfManager::Instance()->inputText[TheTtfManager::Instance()->currentID] = SDL_GetClipboardText();
-            TheTtfManager::Instance()->renderText = true;
-        }
-    }
-    //Enter Key
-    else if(isKeyDown(SDL_SCANCODE_RETURN))
-    {
-
-    //Basla tusu ile nasil baglanti kurabilirim?
-
-
-    }
-
-    //Rerender text if needed
-    if( TheTtfManager::Instance()->renderText )
-    {
-        //Text is not empty
-        if( TheTtfManager::Instance()->inputText[TheTtfManager::Instance()->currentID] != "" )
-        {
-            //Render new text
-            TtfManager::Instance()->loadFromRenderedText(TheTtfManager::Instance()->currentID,
-            TheSim::Instance()->getRenderer(),TheTtfManager::Instance()->currentID);
-
-        }
-        //Text is empty
-        else
-        {
-            //Render space texture
-            TtfManager::Instance()->loadFromRenderedText(TheTtfManager::Instance()->currentID,
-            TheSim::Instance()->getRenderer(),TheTtfManager::Instance()->currentID);
-        }
-    }
-
-
-}
-
-
-
-
-
 
 void InputHandler::clean()
 {
 
 }
-
