@@ -13,6 +13,9 @@ class MainState : public SimState
         virtual bool onExit();
         virtual std::string getStateID() const { return s_mainID; }
         static void startToRun();
+        static void typeInbar1();
+        static void typeInbar2();
+        static void typeInbar3();
     private:
         static const std::string s_mainID;
         std::vector<SimObject*> m_simObject;
