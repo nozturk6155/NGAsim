@@ -7,7 +7,7 @@ Object::Object(int x, int y, int w, int h, std::string id, float vx, float vy)
 :SimObject(x,y,w,h,id),m_velocity(vx,vy),m_acceleration(0.00,10.00)
 {
     m_velocity *= 0.0166666666666667;
-    m_acceleration *= 0.00005391;
+    m_acceleration *= 0.00027209;
     start = clock();
 }
 

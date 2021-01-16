@@ -18,11 +18,11 @@ void InputHolder::setVy(int hiz_y)
 {
     if(yon)
     {
-        vy = -hiz_y;
+        vy = hiz_y;
     }
     else
     {
-        vy = hiz_y;
+        vy = -hiz_y;
     }
 }
 
