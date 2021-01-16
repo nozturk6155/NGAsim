@@ -3,6 +3,7 @@
 #include "TextureManager.h"
 #include "Button.h"
 #include "Object.h"
+#include "InputHolder.h"
 
 const std::string RunState::s_runID = "RUN";
 
@@ -45,7 +46,12 @@ bool RunState::onEnter()
     /* Create objects */
     SimObject* restart = new Button(185, 516, 50, 17, "restart",restartToRun);
     SimObject* reset = new Button(185, 550, 50, 17, "reset", resetToMain);
-    SimObject* cisim = new Object(189, 395, 17, 17, "cisim", 0.00, 0.00);
+    std::cout << TheInputHolder::Instance()->getYi()
+              << " " << TheInputHolder::Instance()->getVx()
+              << " " << TheInputHolder::Instance()->getVy();
+    SimObject* cisim = new Object(189, TheInputHolder::Instance()->getYi(),
+                                  17, 17,"cisim",TheInputHolder::Instance()->getVx(),
+                                  TheInputHolder::Instance()->getVy());
 
     /* Push objects into to vector */
     m_simObject.push_back(reset);
